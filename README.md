@@ -36,7 +36,6 @@ new CanvasClock({
 ````
 
 ###Methods
-------------
 
 The methods work just like jQuery, where the same method is either a getter or a setter.
 
@@ -52,7 +51,6 @@ clock.timezoneOffset('-1');   //Set the timezoneOffset to -1. Clock changes on n
 
 
 ##Options
------------
 
 Here are the list of options that you can pass at start up and their default value. 
 ````Javascript
