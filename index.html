@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>Canvas Clock</title>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/canvas-clock.js"></script>
+
+</head>
+<body>
+
+	<canvas width="201px" height="201px" id="clock"></canvas>	
+
+	<script type="text/javascript">
+		
+		new CanvasClock({
+		  element: 'clock',
+		  radius: 100,
+		  displayMinuteDashes: true,
+		  displayVertex: false
+		});
+
+	</script>
+
+
+</body>
+</html>
