@@ -53,7 +53,7 @@ clock.timezoneOffset('-1');   //Set the timezoneOffset to -1. Clock changes on n
 ##Options
 
 Here are the list of options that you can pass at start up and their default value. 
-````Javascript
+````javascript
 {
     element: 'clock',           //Canvas Element  
     timezoneOffset: null,       //This will be the offset from UTC ex. -5
