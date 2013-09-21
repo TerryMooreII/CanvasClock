@@ -11,12 +11,22 @@
 
 	<script type="text/javascript">
 		
-		new CanvasClock({
+		var x = new CanvasClock({
 		  element: 'clock',
 		  radius: 100,
 		  displayMinuteDashes: true,
 		  displayVertex: false
-		});
+		})
+		x.display();
+		
+		console.log(x.timezoneOffset());
+		
+		setTimeout(function(){
+			x.timezoneOffset('-1');
+	
+			console.log(x.timezoneOffset());
+			
+		}, 5000)
 
 	</script>
 

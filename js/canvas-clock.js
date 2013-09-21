@@ -56,9 +56,6 @@ var CanvasClock = (function (options){
   else
     settings = defaults;
   
-
-
-  console.log(settings.element)
   var canvas = document.getElementById(settings.element);
   var ctx = canvas.getContext('2d');
   
@@ -154,7 +151,7 @@ var CanvasClock = (function (options){
     ctx.beginPath();
   }
 
-  function dashes(  ) {
+  function dashes() {
     for (var i = 0; i < 60; i++){
       var angle = (((i + STARTING_OFFSET) * Math.PI / 3) * SECOND_MINUTE_MOVEMENT);
       var width = (i % 5) ? 1 : 4;
@@ -163,7 +160,7 @@ var CanvasClock = (function (options){
     dashWidth(7);
   }
   
-  //Cheese way to just show the hashs
+  //Cheesy way to just show the hashs
   //Overlay a smaller white circle
   function dashWidth(length){
     circle(settings.radius - length, settings.colors.backgroundColor, settings.colors.backgroundColor);
@@ -206,7 +203,6 @@ var CanvasClock = (function (options){
   }
 
   function display(){
-    var fns = init();
     setInterval(function(){
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       fns.forEach(function(fn) {
@@ -217,8 +213,23 @@ var CanvasClock = (function (options){
     }, 1000);
   }
 
- display();
+  var fns = init();
+    
+  function timezoneOffset(timezone){
+    if (timezone !== null && timezone !== undefined){
+      settings = $.extend(settings, {timezoneOffset: timezone});  
+    } else {
+      return settings.timezoneOffset || -getDate().getTimezoneOffset() / 60;
+    }
+  }
+
+
+  return {
+    display: display,
+    timezoneOffset : timezoneOffset
+ };
 
 });
+
 
 
