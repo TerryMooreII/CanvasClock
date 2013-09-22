@@ -3,7 +3,7 @@ CanvasClock
 
 A customizable JavaScript module that will load a clock in a canvas element.
 
-[logo]: https://raw.github.com/TerryMooreII/CanvasClock/master/img/clock_ss.jpg "Screen Shot"
+![alt text](https://raw.github.com/TerryMooreII/CanvasClock/master/img/clock_ss.jpg "Screen Shot")
 
 ###How to use
 
