@@ -1,7 +1,9 @@
 CanvasClock
 ===========
 
-JavaScript module that will load a clock in a canvas element.
+A customizable JavaScript module that will load a clock in a canvas element.
+
+[logo]: https://raw.github.com/TerryMooreII/CanvasClock/master/img/clock_ss.jpg "Screen Shot"
 
 ###How to use
 
@@ -10,7 +12,6 @@ Include the JavaScript file also this depends on jQuery, i am working to remove 
 ````html
 <script type="text/javascript" src="js/canvas-clock.js"></script>
 <canvas id="clock"></canvas>
-
 ````
 
 Then add this to enable the clock and its settings
