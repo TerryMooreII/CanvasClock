@@ -49,13 +49,9 @@ var CanvasClock = (function (options){
     }
   };
   
-  //if jquery exists extend the defaults with the options passed in
-  //if not then just use the defaults.
-  if (jQuery)
-    settings = $.extend({}, defaults, options);
-  else
-    settings = defaults;
-  
+  if (options)
+    updateSettings(options);
+
   var canvas = document.getElementById(settings.element);
   var ctx = canvas.getContext('2d');
   
@@ -204,6 +200,7 @@ var CanvasClock = (function (options){
 
   function display(){
     setInterval(function(){
+      var fns = init();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       fns.forEach(function(fn) {
         ctx.save();
@@ -213,7 +210,6 @@ var CanvasClock = (function (options){
     }, 1000);
   }
 
-  var fns = init();
     
   function timezoneOffset(timezone){
     if (timezone !== null && timezone !== undefined){
@@ -223,10 +219,31 @@ var CanvasClock = (function (options){
     }
   }
 
+  function updateSettings(options){
+    
+    var currentSettings = defaults;
+
+    if (settings !== null && settings !== undefined)
+      currentSettings = settings;
+
+    if (options){
+      //if jquery exists extend the defaults with the options passed in
+      //if not then just use the defaults.
+      if (jQuery)
+        settings = $.extend({}, currentSettings, options);
+      else
+        settings = defaults;
+    
+    }else{
+      return settings;
+    }
+  }
+
 
   return {
     display: display,
-    timezoneOffset : timezoneOffset
+    timezoneOffset : timezoneOffset,
+    settings: updateSettings
  };
 
 });
