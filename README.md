@@ -40,12 +40,21 @@ new CanvasClock({
 The methods work just like jQuery, where the same method is either a getter or a setter.
 
 Get/Set the timezoneOffset
-Ex.  -5 or 1 etc.
 
 ````javascript
 clock.timezoneOffset();       //Returns the value.  Ex -5
 
 clock.timezoneOffset('-1');   //Set the timezoneOffset to -1. Clock changes on next tick.
+````
+
+Get/Set the settings after initialization
+````javascript
+clock.settings(); 			   //Returns the settings object
+
+clock.settings({ 			   //Pass any object to change the settings			
+	radius:150,
+	displayNumbers: false,
+});  			
 ````
 
 
