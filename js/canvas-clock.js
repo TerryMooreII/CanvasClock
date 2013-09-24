@@ -6,6 +6,7 @@ var CanvasClock = (function (options){
   var SECOND_MINUTE_MOVEMENT = 0.1;
   var STARTING_OFFSET = 15; //Addes this number to the time to move the circles '0' point from 9hours to 12hour
   var settings;
+  var self = this;
 
   var defaults = {
     
@@ -46,7 +47,13 @@ var CanvasClock = (function (options){
       color: '#333',
       width: 2,
       length: 40
-    }
+    },
+    
+    onload: null,
+    onsecond: null,
+    onhour: null,
+    onminute: null
+
   };
   
   if (options)
@@ -107,13 +114,26 @@ var CanvasClock = (function (options){
   function second(){
     var seconds = getDate().getSeconds();
     var angle = (((seconds + STARTING_OFFSET) * Math.PI / 3) * SECOND_MINUTE_MOVEMENT);
+    
     lineSegment(angle, settings.secondHand.length, settings.secondHand.width, settings.secondHand.color);
+    
+    if (settings.ontick)
+      settings.ontick.apply(this, arguments);
+
+    if (settings.onminute && seconds % 60 === 0)
+      settings.onminute.apply(this, arguments);
+
   }
 
   function minute(){
     var minute = getDate().getMinutes();
     var angle = (((minute + STARTING_OFFSET) * Math.PI / 3) * SECOND_MINUTE_MOVEMENT);
+  
     lineSegment(angle, settings.minuteHand.length, settings.minuteHand.width, settings.minuteHand.color);
+
+    if (settings.onhour && minutes % 60 === 0)
+      settings.onhour.apply(this, arguments);
+    
   }
 
   function hour(){
@@ -199,7 +219,11 @@ var CanvasClock = (function (options){
   }
 
   function display(){
+    if (settings.onload)
+      settings.onload.apply(this, arguments);
+    
     setInterval(function(){
+
       var fns = init();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       fns.forEach(function(fn) {
@@ -239,12 +263,11 @@ var CanvasClock = (function (options){
     }
   }
 
-
   return {
     display: display,
     timezoneOffset : timezoneOffset,
     settings: updateSettings
- };
+   };
 
 });
 

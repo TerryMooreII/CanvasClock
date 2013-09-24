@@ -10,12 +10,25 @@
 	<canvas width="201px" height="201px" id="clock"></canvas>	
 
 	<script type="text/javascript">
-		
+		var a= 'tick';
 		var x = new CanvasClock({
 		  element: 'clock',
 		  radius: 100,
 		  displayMinuteDashes: true,
-		  displayVertex: false
+		  displayVertex: false,
+		  onload:function(){
+		  	alert('on load');
+		  },
+		  ontick: function(){
+		  	var a = 'adsf';
+		  	console.log(a)
+		  },
+		  onminute:function(){
+		  	console.log('minute');
+		  },
+		  onhour:function(){
+		  	console.log('hour')
+		  }
 		})
 		x.display();
 		

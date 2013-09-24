@@ -102,6 +102,11 @@ Here are the list of options that you can pass at start up and their default val
       color: '#333',
       width: 2,
       length: 40
-    }
+    },
+
+    onload: null,			//Callback function to run once CanvasClock is loaded
+    onsecond: null,			//Callback function to run every second
+    onhour: null,			//Callback function to run every hour
+    onminute: null			//Callback function to fun every minute
 };
 ````
