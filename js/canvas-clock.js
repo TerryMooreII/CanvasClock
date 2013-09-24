@@ -49,10 +49,10 @@ var CanvasClock = (function (options){
       length: 40
     },
     
-    onload: null,
-    onsecond: null,
-    onhour: null,
-    onminute: null
+    onLoad: null,
+    onSecond: null,
+    onHour: null,
+    onMinute: null
 
   };
   
@@ -117,13 +117,14 @@ var CanvasClock = (function (options){
     
     lineSegment(angle, settings.secondHand.length, settings.secondHand.width, settings.secondHand.color);
     
-    if (settings.ontick)
-      settings.ontick.apply(this, arguments);
+    if (settings.onSecond && isFunction(settings.onSecond))
+      settings.onSecond.apply(this, arguments);
 
-    if (settings.onminute && seconds % 60 === 0)
-      settings.onminute.apply(this, arguments);
+    if (settings.onMinute && isFunction(settings.onMinute) && seconds % 60 === 0)
+      settings.onMinute.apply(this, arguments);
 
   }
+
 
   function minute(){
     var minute = getDate().getMinutes();
@@ -131,8 +132,8 @@ var CanvasClock = (function (options){
   
     lineSegment(angle, settings.minuteHand.length, settings.minuteHand.width, settings.minuteHand.color);
 
-    if (settings.onhour && minutes % 60 === 0)
-      settings.onhour.apply(this, arguments);
+    if (settings.onHour && isFunction(settings.onHour) && minute % 60 === 0)
+      settings.onHour.apply(this, arguments);
     
   }
 
@@ -219,12 +220,12 @@ var CanvasClock = (function (options){
   }
 
   function display(){
-    if (settings.onload)
-      settings.onload.apply(this, arguments);
+    if (settings.onLoad && isFunction(settings.onLoad))
+      settings.onLoad.apply(this, arguments);
     
     setInterval(function(){
-
       var fns = init();
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       fns.forEach(function(fn) {
         ctx.save();
@@ -261,6 +262,13 @@ var CanvasClock = (function (options){
     }else{
       return settings;
     }
+  }
+
+  function isFunction(fn){
+    if (typeof fn === 'function')
+      return true;
+    else 
+      return false;
   }
 
   return {
